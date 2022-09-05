@@ -1,0 +1,16 @@
+body{
+    background-color: black;
+    display:flex;
+    flex-direction: column;
+}
+
+#score-bar{
+    width: auto;
+    height: 100px;
+    background-color: gray;
+}
+.table{
+    width: auto;
+    height: 100px;
+    background-color: aqua;
+}
