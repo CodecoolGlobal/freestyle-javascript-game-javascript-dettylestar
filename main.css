@@ -1,9 +1,9 @@
 body {
     box-sizing: border-box;
+    background-color: black;
 
 }
 .container{
-    background-color: black;
     display:flex;
     flex-direction: column;
     min-height: 100vh;
@@ -47,7 +47,7 @@ body {
     margin: auto 0;
 }
 
-#ball {
+/*#ball {
     display: block;
     width: 30px;
     height: 30px;
@@ -56,4 +56,4 @@ body {
     border-radius: 50%;
 
 
-}
+}*/
