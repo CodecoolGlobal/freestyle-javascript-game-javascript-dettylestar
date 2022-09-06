@@ -1,6 +1,10 @@
 body {
     box-sizing: border-box;
-    background-color: black;
+    background-image: url("static/board_wallpaper.jpg");
+    background-color: rgb(37, 34, 34);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 
 }
 .container{
@@ -21,7 +25,7 @@ body {
 .table{
     width: 800px;
     height: 500px;
-    background-color: aqua;
+    background-color: rgba(75, 72, 72, 0.9);
     align-items: normal;
     position: relative;
     overflow-x: hidden;
