@@ -15,8 +15,10 @@ function collisionDetection() {
     } else if (ball.bottom >= wall.bottom) {
         return 'x'
     } else if ((leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && ball.bottom >= leftPlayer.top)()) {
+        return 'left'
 
-
+    }else if(rightPlayer.left <= ball.right && ball.top <= leftPlayer.bottom && ball.bottom >= leftPlayer.top){
+        return 'right'
     }
 }
 
