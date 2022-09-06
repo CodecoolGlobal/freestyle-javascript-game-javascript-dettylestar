@@ -22,4 +22,40 @@ body {
     width: 800px;
     height: 500px;
     background-color: aqua;
+    align-items: normal;
+    position: relative;
+
+}
+
+#left-player {
+    border-left: 20px solid indianred;
+    vert-align: middle;
+    height: 120px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    margin: auto 0;
+}
+
+#right-player {
+    border-right: 20px solid indianred;
+    vert-align: middle;
+    height: 120px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto 0;
+}
+
+#ball {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 30px auto 0;
+    background-color: darkviolet;
+    border-radius: 50%;
+
+
 }
