@@ -5,6 +5,9 @@ function initGame() {
     // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
+let wall = document.querySelector('.table').getBoundingClientRect();
+console.log(wall.top)
+
 function collisionDetection() {
     let ball = document.querySelector('.ball').getBoundingClientRect();
     let wall = document.querySelector('.table').getBoundingClientRect();
@@ -25,7 +28,7 @@ function collisionDetection() {
 const ballState = {
     ballx: 400,
     bally: 250,
-    speedx: 0,
+    speedx: 3,
     speedy: 6,
     speed: 1,
 };
@@ -83,7 +86,8 @@ function ballUpdate() {
 function ballLoop () {
     ballUpdate();
     drawBall();
-    playerUpdate();
+    leftPlayerUpdate();
+    rightPlayerUpdate();
     playerDraw();
     requestAnimationFrame(ballLoop);
 }
@@ -120,9 +124,27 @@ document.addEventListener('keyup', (event) => {
   }
 });
 
-function playerUpdate() {
-    leftPlayer.top += leftPlayer.speed * (leftPlayer.currentSpeedUp + leftPlayer.currentSpeedDown)
-    rightPlayer.top += rightPlayer.speed * (rightPlayer.currentSpeedUp + rightPlayer.currentSpeedDown)
+function leftPlayerUpdate() {
+    if (document.querySelector('#left-player').getBoundingClientRect().top <= wall.top && leftPlayer.currentSpeedUp<0){
+        leftPlayer.top += leftPlayer.speed * 0
+    }else if (document.querySelector('#left-player').getBoundingClientRect().bottom >= wall.bottom && leftPlayer.currentSpeedDown>0){
+        leftPlayer.top += leftPlayer.speed * 0
+    }else{
+        leftPlayer.top += leftPlayer.speed * (leftPlayer.currentSpeedUp + leftPlayer.currentSpeedDown)
+    }
+
+
+}
+
+function rightPlayerUpdate(){
+    if (document.querySelector('#right-player').getBoundingClientRect().top <= wall.top && rightPlayer.currentSpeedUp<0){
+        rightPlayer.top += rightPlayer.speed * 0
+    }else if (document.querySelector('#right-player').getBoundingClientRect().bottom >= wall.bottom && rightPlayer.currentSpeedDown>0){
+        rightPlayer.top += rightPlayer.speed * 0
+    }else{
+        rightPlayer.top += rightPlayer.speed * (rightPlayer.currentSpeedUp + rightPlayer.currentSpeedDown)
+    }
+
 }
 
 function playerDraw() {

@@ -37,7 +37,7 @@ body {
     background-color: rgba(75, 72, 72, 0);
     align-items: normal;
     position: relative;
-    overflow-x: hidden;
+
     border-style: solid;
     border-color: white;
 
@@ -49,7 +49,7 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    margin: auto 0;
+
 }
 
 #right-player {
@@ -59,6 +59,6 @@ body {
     position: absolute;
     top: 0px;
     right: 0px;
-    margin: auto 0;
+
 }
 
