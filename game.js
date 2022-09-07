@@ -32,21 +32,22 @@ let rightPlayerScore = 0;
 
 
 function collisionDetection() {
+
     let ball = document.querySelector('.ball').getBoundingClientRect();
     let wall = document.querySelector('.table').getBoundingClientRect();
     let leftPlayer = document.querySelector('#left-player').getBoundingClientRect();
     let rightPlayer = document.querySelector('#right-player').getBoundingClientRect();
+    let leftPlayerColl = playerBallCollision(leftPlayer,ball);
+    let rightPlayerColl = playerBallCollision(rightPlayer,ball);
     if (ball.top <= wall.top) {
-        return 'top'
+        return 'y'
     } else if (ball.bottom >= wall.bottom) {
-        return 'bottom'
-    } else if (leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && leftPlayer.right >= ball.left && ball.bottom >= leftPlayer.top) {
-        return 'left'
-    }else if(rightPlayer.left <= ball.right
-        && ball.top <= rightPlayer.bottom
-        && rightPlayer.left <= ball.right
-        && ball.bottom >= rightPlayer.top){
-        return 'right'
+        return 'y'
+    } else if (leftPlayerColl) {
+        return leftPlayerColl
+    }else if(rightPlayerColl){
+        return rightPlayerColl
+
     } else if (wall.left >= ball.left) {
         rightPlayerScore += 1
         hitWall = true;
@@ -63,7 +64,38 @@ function collisionDetection() {
     return true
 }
 
+
+function playerBallCollision(player,ball) {
+    if (player.left <= ball.right
+        && ball.top <= player.bottom
+        && player.right >= ball.left
+        && ball.bottom >= player.top) {
+        let depthY;
+        if (ball.top + ball.height / 2 > (player.top + player.height / 2)) {
+            depthY = ball.bottom - player.top
+        }else{
+            depthY = player.bottom- ball.top
+        }
+        let depthX;
+        if(ball.left + ball.width / 2 > (player.left + player.width / 2)) {
+            depthX = player.right- ball.left
+        }else{
+            depthX = ball.right -player.left
+        }
+        if (depthX > depthY){
+            return 'y'
+        }else {
+            return 'x'
+        }
+    }
+    return null
+
+}
+
+
 const ballState = {
+    prevX:0,
+    prevY:0,
     ballx: 400,
     bally: 250,
     speedx: 3,
@@ -78,7 +110,7 @@ const leftPlayer = {
     currentSpeedDown: 0
 }
 
-const rightPlayer = {
+const player = {
     top: 0,
     left: 0,
     speed: 3,
@@ -115,11 +147,17 @@ function ballInit () {
 
 function ballUpdate() {
     const collision = collisionDetection()
-    if (collision === 'top' || collision === 'bottom') {
+    if (collision === 'y') {
+        ballState.ballx = ballState.prevX
+        ballState.bally = ballState.prevY
         ballState.speedy *= (-1)
-    } else if (collision === 'left' || collision === 'right') {
+    } else if (collision === 'x') {
+        ballState.ballx = ballState.prevX
+        ballState.bally = ballState.prevY
         ballState.speedx *= (-1)
     }
+    ballState.prevX = ballState.ballx
+    ballState.prevY = ballState.bally
     ballState.ballx += ballState.speedx;
     ballState.bally += ballState.speedy;
 }
@@ -151,9 +189,9 @@ document.addEventListener('keydown', (event) => {
   }else if (keyName === 'w') {
       leftPlayer.currentSpeedUp = -1
   }else if (keyName === 'ArrowUp') {
-      rightPlayer.currentSpeedUp = -1
+      player.currentSpeedUp = -1
   }else if (keyName === 'ArrowDown') {
-      rightPlayer.currentSpeedDown = 1
+      player.currentSpeedDown = 1
   }
 });
 
@@ -164,9 +202,9 @@ document.addEventListener('keyup', (event) => {
   }else if (keyName === 'w') {
       leftPlayer.currentSpeedUp = 0
   }else if (keyName === 'ArrowUp') {
-      rightPlayer.currentSpeedUp = 0
+      player.currentSpeedUp = 0
   }else if (keyName === 'ArrowDown') {
-      rightPlayer.currentSpeedDown = 0
+      player.currentSpeedDown = 0
   }
 });
 
@@ -183,19 +221,19 @@ function leftPlayerUpdate() {
 }
 
 function rightPlayerUpdate(){
-    if (document.querySelector('#right-player').getBoundingClientRect().top <= wall.top && rightPlayer.currentSpeedUp<0){
-        rightPlayer.top += rightPlayer.speed * 0
-    }else if (document.querySelector('#right-player').getBoundingClientRect().bottom >= wall.bottom && rightPlayer.currentSpeedDown>0){
-        rightPlayer.top += rightPlayer.speed * 0
+    if (document.querySelector('#right-player').getBoundingClientRect().top <= wall.top && player.currentSpeedUp<0){
+        player.top += player.speed * 0
+    }else if (document.querySelector('#right-player').getBoundingClientRect().bottom >= wall.bottom && player.currentSpeedDown>0){
+        player.top += player.speed * 0
     }else{
-        rightPlayer.top += rightPlayer.speed * (rightPlayer.currentSpeedUp + rightPlayer.currentSpeedDown)
+        player.top += player.speed * (player.currentSpeedUp + player.currentSpeedDown)
     }
 
 }
 
 function playerDraw() {
     document.querySelector('#left-player').style.top = leftPlayer.top + 'px'
-    document.querySelector('#right-player').style.top = rightPlayer.top + 'px'
+    document.querySelector('#right-player').style.top = player.top + 'px'
 }
 
 
@@ -217,19 +255,19 @@ easyButton.addEventListener('click',() =>{
     ballState.speedx = 3
     ballState.speedy = 6
     leftPlayer.speed = 4
-    rightPlayer.speed = 4
+    player.speed = 4
 })
 
 mediumButton.addEventListener('click',() =>{
     ballState.speedx = 6
     ballState.speedy = 12
     leftPlayer.speed = 6
-    rightPlayer.speed = 6
+    player.speed = 6
 })
 
 hardButton.addEventListener('click',() =>{
     ballState.speedx = 9
     ballState.speedy = 15
     leftPlayer.speed = 15
-    rightPlayer.speed = 15
+    player.speed = 15
 })
