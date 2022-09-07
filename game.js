@@ -17,9 +17,11 @@ function collisionDetection() {
         return 'top'
     } else if (ball.bottom >= wall.bottom) {
         return 'bottom'
-    } else if (leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && ball.bottom >= leftPlayer.top) {
+    } else if (leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && leftPlayer.right >= ball.left && ball.bottom >= leftPlayer.top) {
         return 'left'
-    }else if(rightPlayer.left <= ball.right && ball.top <= leftPlayer.bottom && ball.bottom >= leftPlayer.top){
+    }else if(rightPlayer.left <= ball.right && ball.top <= rightPlayer.bottom && rightPlayer.left <= ball.right && ball.bottom >= rightPlayer.top){
+        console.log(ball.right)
+        console.log(wall.left)
         return 'right'
     }
     return true
