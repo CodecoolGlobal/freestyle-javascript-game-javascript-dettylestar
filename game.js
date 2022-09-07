@@ -1,6 +1,25 @@
+let hitWall = false;
+let gameIsRunning = false
+
+
 initGame();
 
 function initGame() {
+    if (gameIsRunning === false) {
+        console.log('press Space')
+        window.addEventListener('keypress', (start) => {
+            if (start.key ===' ') {
+                hitWall = false;
+                gameIsRunning = true
+                ballState.bally = 250
+                ballState.ballx = 400
+                ballInit();
+            }
+            else{
+                return console.log('Press Space')
+            }
+        } )
+    }
 
     // Your game can start here, but define separate functions, don't write everything in here :)
 
@@ -9,7 +28,7 @@ let wall = document.querySelector('.table').getBoundingClientRect();
 console.log(wall.top)
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
-let hitWall = false;
+
 
 function collisionDetection() {
     let ball = document.querySelector('.ball').getBoundingClientRect();
@@ -27,11 +46,13 @@ function collisionDetection() {
     } else if (wall.left >= ball.left) {
         rightPlayerScore += 1
         hitWall = true;
+        gameIsRunning = false
         console.log(rightPlayerScore)
         return 'rightPLayer'
     } else if (wall.right <= ball.right) {
         leftPlayerScore += 1
         hitWall = true;
+        gameIsRunning = false
         console.log(leftPlayerScore)
         return 'leftPlayer'
     }
@@ -68,7 +89,10 @@ const ui = {
 
 
 function ballInit () {
-    ball = document.createElement('div');
+    let ball = document.querySelector('.ball')
+    if (ball == null) {
+        ball = document.createElement('div');
+    }
     ball.className = 'ball';
     ball.style.width = '30px';
     ball.style.height = '30px';
@@ -104,6 +128,7 @@ function ballLoop () {
     playerDraw();
     if (hitWall === true) {
         return 'score'
+
     } else {
         requestAnimationFrame(ballLoop);
     }
@@ -170,4 +195,4 @@ function playerDraw() {
 }
 
 
-ballInit();
+
