@@ -30,9 +30,26 @@ const ballState = {
     speed: 1,
 };
 
+const leftPlayer = {
+    top: 0,
+    left: 0,
+    speed: 3,
+    currentSpeedUp: 0,
+    currentSpeedDown: 0
+}
+
+const rightPlayer = {
+    top: 0,
+    left: 0,
+    speed: 3,
+    currentSpeedUp: 0,
+    currentSpeedDown: 0,
+}
+
 const ui = {
     root: document.querySelector('.table')
 };
+
 
 function ballInit () {
     ball = document.createElement('div');
@@ -54,7 +71,6 @@ function ballInit () {
 
 function ballUpdate() {
     const collision = collisionDetection()
-    console.log(collision)
     if (collision === 'top' || collision === 'bottom') {
         ballState.speedy *= (-1)
     } else if (collision === 'left' || collision === 'right') {
@@ -66,14 +82,53 @@ function ballUpdate() {
 
 function ballLoop () {
     ballUpdate();
-    draw();
+    drawBall();
+    playerUpdate();
+    playerDraw();
     requestAnimationFrame(ballLoop);
 }
 
-function draw () {
+function drawBall () {
     ui.ball.style.left = `${ballState.ballx}px`;
     ui.ball.style.top = `${ballState.bally}px`;
 }
 
-// collisionDetection();
+
+document.addEventListener('keydown', (event) => {
+  const keyName = event.key;
+  if (keyName === 's') {
+      leftPlayer.currentSpeedDown = 1
+  }else if (keyName === 'w') {
+      leftPlayer.currentSpeedUp = -1
+  }else if (keyName === 'ArrowUp') {
+      rightPlayer.currentSpeedUp = -1
+  }else if (keyName === 'ArrowDown') {
+      rightPlayer.currentSpeedDown = 1
+  }
+});
+
+document.addEventListener('keyup', (event) => {
+  const keyName = event.key;
+  if (keyName === 's') {
+      leftPlayer.currentSpeedDown = 0
+  }else if (keyName === 'w') {
+      leftPlayer.currentSpeedUp = 0
+  }else if (keyName === 'ArrowUp') {
+      rightPlayer.currentSpeedUp = 0
+  }else if (keyName === 'ArrowDown') {
+      rightPlayer.currentSpeedDown = 0
+  }
+});
+
+function playerUpdate() {
+    leftPlayer.top += leftPlayer.speed * (leftPlayer.currentSpeedUp + leftPlayer.currentSpeedDown)
+    rightPlayer.top += rightPlayer.speed * (rightPlayer.currentSpeedUp + rightPlayer.currentSpeedDown)
+}
+
+function playerDraw() {
+    document.querySelector('#left-player').style.top = leftPlayer.top + 'px'
+    document.querySelector('#right-player').style.top = rightPlayer.top + 'px'
+}
+
+
 ballInit();
