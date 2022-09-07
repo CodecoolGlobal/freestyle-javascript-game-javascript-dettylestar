@@ -7,6 +7,9 @@ function initGame() {
 }
 let wall = document.querySelector('.table').getBoundingClientRect();
 console.log(wall.top)
+let leftPlayerScore = 0;
+let rightPlayerScore = 0;
+let hitWall = false;
 
 function collisionDetection() {
     let ball = document.querySelector('.ball').getBoundingClientRect();
@@ -20,9 +23,17 @@ function collisionDetection() {
     } else if (leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && leftPlayer.right >= ball.left && ball.bottom >= leftPlayer.top) {
         return 'left'
     }else if(rightPlayer.left <= ball.right && ball.top <= rightPlayer.bottom && rightPlayer.left <= ball.right && ball.bottom >= rightPlayer.top){
-        console.log(ball.right)
-        console.log(wall.left)
         return 'right'
+    } else if (wall.left >= ball.left) {
+        rightPlayerScore += 1
+        hitWall = true;
+        console.log(rightPlayerScore)
+        return 'rightPLayer'
+    } else if (wall.right <= ball.right) {
+        leftPlayerScore += 1
+        hitWall = true;
+        console.log(leftPlayerScore)
+        return 'leftPlayer'
     }
     return true
 }
@@ -91,7 +102,11 @@ function ballLoop () {
     leftPlayerUpdate();
     rightPlayerUpdate();
     playerDraw();
-    requestAnimationFrame(ballLoop);
+    if (hitWall === true) {
+        return 'score'
+    } else {
+        requestAnimationFrame(ballLoop);
+    }
 }
 
 function drawBall () {
