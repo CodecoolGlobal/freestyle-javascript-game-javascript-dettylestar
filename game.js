@@ -5,6 +5,7 @@ let gameIsRunning = false
 initGame();
 
 function initGame() {
+
     if (gameIsRunning === false) {
         console.log('press Space')
         window.addEventListener('keypress', (start) => {
@@ -41,7 +42,10 @@ function collisionDetection() {
         return 'bottom'
     } else if (leftPlayer.right >= ball.left && ball.top <= leftPlayer.bottom && leftPlayer.right >= ball.left && ball.bottom >= leftPlayer.top) {
         return 'left'
-    }else if(rightPlayer.left <= ball.right && ball.top <= rightPlayer.bottom && rightPlayer.left <= ball.right && ball.bottom >= rightPlayer.top){
+    }else if(rightPlayer.left <= ball.right
+        && ball.top <= rightPlayer.bottom
+        && rightPlayer.left <= ball.right
+        && ball.bottom >= rightPlayer.top){
         return 'right'
     } else if (wall.left >= ball.left) {
         rightPlayerScore += 1
@@ -64,7 +68,6 @@ const ballState = {
     bally: 250,
     speedx: 3,
     speedy: 6,
-    speed: 1,
 };
 
 const leftPlayer = {
@@ -84,7 +87,8 @@ const rightPlayer = {
 }
 
 const ui = {
-    root: document.querySelector('.table')
+    root: document.querySelector('.table'),
+    header: document.querySelector('#score-bar')
 };
 
 
@@ -96,7 +100,7 @@ function ballInit () {
     ball.className = 'ball';
     ball.style.width = '30px';
     ball.style.height = '30px';
-    ball.style.borderRadius = '50%';
+    //ball.style.borderRadius = '50%';
     ball.style.backgroundColor = 'purple';
     ball.style.display = 'block';
     ball.style.position = 'absolute';
@@ -195,4 +199,37 @@ function playerDraw() {
 }
 
 
+let easyButton = document.createElement('button')
+let mediumButton = document.createElement('button')
+let hardButton = document.createElement('button')
+easyButton.innerHTML = "easy"
+easyButton.style.position = 'relative'
+easyButton.style.order = "2"
+mediumButton.innerHTML = "medium"
+mediumButton.style.position = 'relative'
+mediumButton.style.order = "3"
+hardButton.innerHTML = "hard"
+hardButton.style.position = 'relative'
+hardButton.style.order = "4"
+ui.header.append(easyButton,mediumButton,hardButton)
 
+easyButton.addEventListener('click',() =>{
+    ballState.speedx = 3
+    ballState.speedy = 6
+    leftPlayer.speed = 4
+    rightPlayer.speed = 4
+})
+
+mediumButton.addEventListener('click',() =>{
+    ballState.speedx = 6
+    ballState.speedy = 12
+    leftPlayer.speed = 6
+    rightPlayer.speed = 6
+})
+
+hardButton.addEventListener('click',() =>{
+    ballState.speedx = 9
+    ballState.speedy = 15
+    leftPlayer.speed = 15
+    rightPlayer.speed = 15
+})
