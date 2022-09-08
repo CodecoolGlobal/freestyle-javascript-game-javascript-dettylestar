@@ -50,21 +50,27 @@ body {
 }
 
 #left-player {
-    border-left: 40px solid indianred;
+
     height: 120px;
+    width: 40px;
     position: absolute;
     top: 0px;
     left: 0px;
+    background-image: url("static/kratos_sword.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
 }
 
 #right-player {
-    border-right: 40px solid indianred;
-
     height: 120px;
+    width: 40px;
     position: absolute;
     top: 0px;
     right: 0px;
+    background-image: url("static/kratos_sword.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
 }
 

@@ -5,6 +5,7 @@ let gameMusic = new Audio('static/game_music.mp3');
 
 initGame();
 
+let gameMode = 'easy'
 
 // SHOWING SCORE ON THE TABLE
 let scoreDiv1 = document.querySelector('#first-player-score')
@@ -178,7 +179,17 @@ function ballUpdate() {
         ballState.ballx = ballState.prevX
         ballState.bally = ballState.prevY
         let randomx = Math.random() * -1 + -0.5
-        ballState.speedx *= randomx
+        if(ballState.speedx < 1 && gameMode =='easy'){
+            ballState.speedx = 3
+        }else if (ballState.speedx < 4 && gameMode =='medium'){
+            ballState.speedx = 6
+        }
+        else if (ballState.speedx < 7 && gameMode =='hard'){
+            ballState.speedx = 9
+        }else{
+            ballState.speedx *= randomx
+        }
+
         let randomy = Math.random() < 0.5 ? 1 : -1;
         ballState.speedy *= randomy
     }else if (collision === 'y') {
@@ -310,6 +321,7 @@ easyButton.addEventListener('click',() =>{
     ballState.speedy = 6
     leftPlayer.speed = 4
     player.speed = 4
+    gameMode = 'easy'
 })
 
 
@@ -318,6 +330,7 @@ mediumButton.addEventListener('click',() =>{
     ballState.speedy = 12
     leftPlayer.speed = 6
     player.speed = 6
+    gameMode = 'medium'
 })
 
 hardButton.addEventListener('click',() =>{
@@ -325,5 +338,6 @@ hardButton.addEventListener('click',() =>{
     ballState.speedy = 15
     leftPlayer.speed = 15
     player.speed = 15
+    gameMode = 'hard'
 })
 
