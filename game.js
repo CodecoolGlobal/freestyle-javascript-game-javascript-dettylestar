@@ -256,12 +256,18 @@ let hardButton = document.createElement('button')
 easyButton.innerHTML = "easy"
 easyButton.style.position = 'relative'
 easyButton.style.order = "2"
+easyButton.style.backgroundColor = 'green'
+easyButton.style.borderRadius = '20%'
 mediumButton.innerHTML = "medium"
 mediumButton.style.position = 'relative'
 mediumButton.style.order = "3"
+mediumButton.style.backgroundColor = 'blue'
+mediumButton.style.borderRadius = '20%'
 hardButton.innerHTML = "hard"
 hardButton.style.position = 'relative'
 hardButton.style.order = "4"
+hardButton.style.backgroundColor = 'red'
+hardButton.style.borderRadius = '20%'
 ui.header.append(easyButton,mediumButton,hardButton)
 
 easyButton.addEventListener('click',() =>{
