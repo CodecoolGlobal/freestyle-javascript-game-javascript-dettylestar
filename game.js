@@ -1,6 +1,8 @@
 let hitWall = false;
 let gameIsRunning = false
 let gameMusic = new Audio('static/game_music.mp3');
+let leftPlayerScore = 0;
+let rightPlayerScore = 0;
 
 
 initGame();
@@ -23,6 +25,16 @@ function initGame() {
         console.log('press Space')
         window.addEventListener('keypress', (start) => {
             if (start.key ===' ') {
+                if (leftPlayerScore == 5) {
+                    leftPlayerScore = 0
+                    rightPlayerScore = 0
+                    return alert('Left Player Won The Game!')
+
+                }else if (rightPlayerScore == 5) {
+                    rightPlayerScore = 0
+                    leftPlayerScore = 0
+                    return alert('Right Player Won The Game!')
+                }else {
                 gameMusic.play();
                 hitWall = false;
                 gameIsRunning = true
@@ -30,8 +42,7 @@ function initGame() {
                 ballState.ballx = 400
                 ballInit();
             }
-            else{
-                return console.log('Press Space')
+
             }
         } )
     }
@@ -41,8 +52,7 @@ function initGame() {
 }
 let wall = document.querySelector('.table').getBoundingClientRect();
 console.log(wall.top)
-let leftPlayerScore = 0;
-let rightPlayerScore = 0;
+
 
 
 function collisionDetection() {
