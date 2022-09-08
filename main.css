@@ -31,8 +31,6 @@ body {
     background-color: gray;
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    bottom: 666px;
 }
 .table{
     width: 800px;
@@ -62,7 +60,6 @@ body {
 
 #right-player {
     border-right: 40px solid indianred;
-
     height: 120px;
     position: absolute;
     top: 0px;
