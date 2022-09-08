@@ -4,6 +4,17 @@ let gameIsRunning = false
 
 initGame();
 
+
+// SHOWING SCORE ON THE TABLE
+let scoreDiv1 = document.querySelector('#first-player-score')
+let scoreDiv2 = document.querySelector('#second-player-score')
+let scoreFirstPlayer = document.createElement('p')
+// scoreFirstPlayer.innerText = leftPlayerScore
+let scoreSecondPlayer = document.createElement('p')
+// scoreSecondPlayer.innerText = rightPlayerScore
+scoreDiv1.appendChild(scoreFirstPlayer)
+scoreDiv2.appendChild(scoreSecondPlayer)
+
 function initGame() {
 
     if (gameIsRunning === false) {
@@ -133,6 +144,7 @@ shield.setAttribute('height', '30px');
 shield.setAttribute('width', '30px');
 
 function ballInit () {
+
     let ball = document.querySelector('.ball')
     if (ball == null) {
         ball = document.createElement('div');
@@ -227,6 +239,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 function leftPlayerUpdate() {
+    scoreFirstPlayer.innerText = leftPlayerScore
     if (document.querySelector('#left-player').getBoundingClientRect().top <= wall.top && leftPlayer.currentSpeedUp<0){
         leftPlayer.top += leftPlayer.speed * 0
     }else if (document.querySelector('#left-player').getBoundingClientRect().bottom >= wall.bottom && leftPlayer.currentSpeedDown>0){
@@ -235,10 +248,11 @@ function leftPlayerUpdate() {
         leftPlayer.top += leftPlayer.speed * (leftPlayer.currentSpeedUp + leftPlayer.currentSpeedDown)
     }
 
-
 }
 
 function rightPlayerUpdate(){
+
+    scoreSecondPlayer.innerText = rightPlayerScore
     if (document.querySelector('#right-player').getBoundingClientRect().top <= wall.top && player.currentSpeedUp<0){
         player.top += player.speed * 0
     }else if (document.querySelector('#right-player').getBoundingClientRect().bottom >= wall.bottom && player.currentSpeedDown>0){
@@ -289,3 +303,4 @@ hardButton.addEventListener('click',() =>{
     leftPlayer.speed = 15
     player.speed = 15
 })
+
