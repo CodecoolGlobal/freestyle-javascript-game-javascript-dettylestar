@@ -40,12 +40,12 @@ function initGame() {
                 if (leftPlayerScore == 5) {
                     leftPlayerScore = 0
                     rightPlayerScore = 0
-                    return alert('Left Player Won The Game!')
+                    return alert(playerLeftName + ' won The Game!')
 
                 }else if (rightPlayerScore == 5) {
                     rightPlayerScore = 0
                     leftPlayerScore = 0
-                    return alert('Right Player Won The Game!')
+                    return alert(playerRightName + ' won The Game!')
                 }else {
                 gameMusic.play();
                 hitWall = false;
