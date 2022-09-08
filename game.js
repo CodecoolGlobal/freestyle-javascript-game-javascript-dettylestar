@@ -17,6 +17,8 @@ let scoreFirstPlayer = document.createElement('p')
 let scoreSecondPlayer = document.createElement('p')
 // scoreSecondPlayer.innerText = rightPlayerScore
 scoreDiv1.appendChild(scoreFirstPlayer)
+scoreFirstPlayer.style.fontsize = '20px'
+scoreFirstPlayer.style.fontcolor = 'yellow'
 scoreDiv2.appendChild(scoreSecondPlayer)
 
 function initGame() {
