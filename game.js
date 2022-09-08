@@ -127,6 +127,10 @@ const ui = {
     header: document.querySelector('#score-bar')
 };
 
+const shield = document.createElement('img');
+shield.setAttribute('src','static/gold_shield.png');
+shield.setAttribute('height', '30px');
+shield.setAttribute('width', '30px');
 
 function ballInit () {
     let ball = document.querySelector('.ball')
@@ -136,8 +140,9 @@ function ballInit () {
     ball.className = 'ball';
     ball.style.width = '30px';
     ball.style.height = '30px';
+    ball.appendChild(shield)
     //ball.style.borderRadius = '50%';
-    ball.style.backgroundColor = 'purple';
+    //ball.style.backgroundColor = 'purple';
     ball.style.display = 'block';
     ball.style.position = 'absolute';
     ball.style.left = '400px';
