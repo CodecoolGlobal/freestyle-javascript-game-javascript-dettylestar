@@ -35,17 +35,21 @@ function collisionDetection() {
 
     let ball = document.querySelector('.ball').getBoundingClientRect();
     let wall = document.querySelector('.table').getBoundingClientRect();
-    let leftPlayer = document.querySelector('#left-player').getBoundingClientRect();
-    let rightPlayer = document.querySelector('#right-player').getBoundingClientRect();
-    let leftPlayerColl = playerBallCollision(leftPlayer,ball);
-    let rightPlayerColl = playerBallCollision(rightPlayer,ball);
+    let leftPlayer = document.querySelector('#left-player')
+    let rightPlayer = document.querySelector('#right-player')
+    let leftPlayerColl = playerBallCollision(leftPlayer.getBoundingClientRect(),ball);
+    let rightPlayerColl = playerBallCollision(rightPlayer.getBoundingClientRect(),ball);
     if (ball.top <= wall.top) {
         return 'y'
     } else if (ball.bottom >= wall.bottom) {
         return 'y'
-    } else if (leftPlayerColl) {
+    } else if (leftPlayerColl && leftPlayer.dataset.stuck === 'false') {
+        leftPlayer.dataset.stuck = 'true';
+        setTimeout(()=>{leftPlayer.dataset.stuck = 'false'},1000)
         return leftPlayerColl
-    }else if(rightPlayerColl){
+    }else if(rightPlayerColl && rightPlayer.dataset.stuck === 'false'){
+        rightPlayer.dataset.stuck = 'true';
+        setTimeout(()=>{rightPlayer.dataset.stuck = 'false'},1000)
         return rightPlayerColl
 
     } else if (wall.left >= ball.left) {
@@ -83,7 +87,7 @@ function playerBallCollision(player,ball) {
             depthX = ball.right -player.left
         }
         if (depthX > depthY){
-            return 'y'
+            return 'py'
         }else {
             return 'x'
         }
@@ -155,6 +159,12 @@ function ballUpdate() {
         ballState.ballx = ballState.prevX
         ballState.bally = ballState.prevY
         ballState.speedx *= (-1)
+    }else if (collision === 'py') {
+        ballState.ballx = ballState.prevX
+        ballState.bally = ballState.prevY
+        let random = Math.random() < 0.5 ? 1 : -1;
+        console.log(random)
+        ballState.speedx *= random
     }
     ballState.prevX = ballState.ballx
     ballState.prevY = ballState.bally
