@@ -254,26 +254,40 @@ function playerDraw() {
     document.querySelector('#right-player').style.top = player.top + 'px'
 }
 
-
+let easyimage = document.createElement("img")
+easyimage.src = 'static/rune.png'
+easyimage.style.maxWidth = '100%'
+easyimage.style.maxHeight = '100%'
+easyimage.style.display = 'block'
+let mediumimage = document.createElement("img")
+mediumimage.src = 'static/runeM.png'
+mediumimage.style.maxWidth = '100%'
+mediumimage.style.maxHeight = '100%'
+mediumimage.style.display = 'block'
+let hardimage = document.createElement('img')
+hardimage.src = 'static/runeH.png'
+hardimage.style.maxWidth = '100%'
+hardimage.style.maxHeight = '100%'
+hardimage.style.display = 'block'
 let easyButton = document.createElement('button')
 let mediumButton = document.createElement('button')
 let hardButton = document.createElement('button')
-easyButton.innerHTML = "easy"
 easyButton.style.position = 'relative'
 easyButton.style.order = "2"
 easyButton.style.backgroundColor = 'green'
 easyButton.style.borderRadius = '20%'
-mediumButton.innerHTML = "medium"
 mediumButton.style.position = 'relative'
 mediumButton.style.order = "3"
 mediumButton.style.backgroundColor = 'blue'
 mediumButton.style.borderRadius = '20%'
-hardButton.innerHTML = "hard"
 hardButton.style.position = 'relative'
 hardButton.style.order = "4"
 hardButton.style.backgroundColor = 'red'
 hardButton.style.borderRadius = '20%'
 ui.header.append(easyButton,mediumButton,hardButton)
+easyButton.appendChild(easyimage)
+mediumButton.appendChild(mediumimage)
+hardButton.appendChild(hardimage)
 
 easyButton.addEventListener('click',() =>{
     ballState.speedx = 3
@@ -281,6 +295,7 @@ easyButton.addEventListener('click',() =>{
     leftPlayer.speed = 4
     player.speed = 4
 })
+
 
 mediumButton.addEventListener('click',() =>{
     ballState.speedx = 6
