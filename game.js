@@ -1,6 +1,11 @@
 let hitWall = false;
 let gameIsRunning = false
 let gameMusic = new Audio('static/game_music.mp3');
+let music = gameMusic.volume = 0.5
+let KratosL = new Audio('static/boy.mp3')
+let KratosR = new Audio ('static/higher-if-you-can.mp3')
+let KratosLast = new Audio('static/thisisthelast.mp3')
+let KratosRightLast = new Audio('static/watchyourself.mp3')
 let leftPlayerScore = 0;
 let rightPlayerScore = 0;
 
@@ -23,19 +28,33 @@ scoreDiv2.appendChild(scoreSecondPlayer)
 
 function initGame() {
 
+    let playerLeftName = prompt("Please enter your name");
+
+    if (playerLeftName != null) {
+        document.getElementById("left-player-name").innerHTML = playerLeftName
+    }
+
+    let playerRightName = prompt("Please enter your name");
+
+    if (playerRightName != null) {
+        document.getElementById("right-player-name").innerHTML = playerRightName
+    }
+
     if (gameIsRunning === false) {
         console.log('press Space')
         window.addEventListener('keypress', (start) => {
             if (start.key ===' ') {
                 if (leftPlayerScore == 5) {
+                    KratosLast.play()
                     leftPlayerScore = 0
                     rightPlayerScore = 0
-                    return alert('Left Player Won The Game!')
+                    return alert(playerLeftName + ' won The Game!')
 
                 }else if (rightPlayerScore == 5) {
+                    KratosRightLast.play()
                     rightPlayerScore = 0
                     leftPlayerScore = 0
-                    return alert('Right Player Won The Game!')
+                    return alert(playerRightName + ' won The Game!')
                 }else {
                 gameMusic.play();
                 hitWall = false;
@@ -79,12 +98,14 @@ function collisionDetection() {
         return rightPlayerColl
 
     } else if (wall.left >= ball.left) {
+        KratosL.play()
         rightPlayerScore += 1
         hitWall = true;
         gameIsRunning = false
         console.log(rightPlayerScore)
         return 'rightPLayer'
     } else if (wall.right <= ball.right) {
+        KratosR.play()
         leftPlayerScore += 1
         hitWall = true;
         gameIsRunning = false
