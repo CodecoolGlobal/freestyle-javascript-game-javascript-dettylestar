@@ -31,7 +31,8 @@ body {
     background-color: gray;
     display: flex;
     justify-content: space-between;
-
+    position: absolute;
+    bottom: 666px;
 }
 .table{
     width: 800px;
@@ -39,9 +40,14 @@ body {
     background-color: rgba(75, 72, 72, 0);
     align-items: normal;
     position: relative;
-
+    border-image: url("static/kotel.jpg");
+    border-image-slice: 99 97 97 94;
+    border-image-width: 20px 20px 20px 20px;
+    border-image-outset: 20px 20px 20px 20px;
+    border-image-repeat:stretch stretch;
     border-style: solid;
-    border-color: white;
+
+
 
 }
 
