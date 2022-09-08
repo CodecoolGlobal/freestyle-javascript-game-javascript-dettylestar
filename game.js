@@ -21,6 +21,18 @@ scoreDiv2.appendChild(scoreSecondPlayer)
 
 function initGame() {
 
+    let playerLeftName = prompt("Please enter your name");
+
+    if (playerLeftName != null) {
+        document.getElementById("left-player-name").innerHTML = playerLeftName
+    }
+
+    let playerRightName = prompt("Please enter your name");
+
+    if (playerRightName != null) {
+        document.getElementById("right-player-name").innerHTML = playerRightName
+    }
+
     if (gameIsRunning === false) {
         console.log('press Space')
         window.addEventListener('keypress', (start) => {

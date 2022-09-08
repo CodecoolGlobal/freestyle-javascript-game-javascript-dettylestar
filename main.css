@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Uncial Antiqua';
+    src: url('static/font/UncialAntiqua-Regular.woff') format('woff'),
+        url('static/font/UncialAntiqua-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     box-sizing: border-box;
     background-image: url("static/board_wallpaper.jpg");
@@ -75,6 +84,9 @@ body {
 }
 
 #first-player-score{
+    font-family: "Uncial Antiqua";
+    font-optical-sizing: auto;
+    text-align: center;
     position: relative;
     left:0px;
     max-height: available;
@@ -82,7 +94,12 @@ body {
     border-style: solid;
     border-color: white;
 }
+
+
 #second-player-score{
+    font-family: "Uncial Antiqua";
+    font-optical-sizing: auto;
+    text-align: center;
     position: relative;
     right:0px;
     max-height: available;
@@ -90,4 +107,12 @@ body {
     border-style: solid;
     border-color: white;
     order: 6;
+}
+
+#left-player-name {
+    font-family: "Uncial Antiqua";
+}
+
+#right-player-name {
+    font-family: "Uncial Antiqua";
 }
