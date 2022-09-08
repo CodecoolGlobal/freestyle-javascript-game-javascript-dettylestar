@@ -1,5 +1,6 @@
 let hitWall = false;
 let gameIsRunning = false
+let gameMusic = new Audio('static/game_music.mp3');
 
 
 initGame();
@@ -10,6 +11,7 @@ function initGame() {
         console.log('press Space')
         window.addEventListener('keypress', (start) => {
             if (start.key ===' ') {
+                gameMusic.play();
                 hitWall = false;
                 gameIsRunning = true
                 ballState.bally = 250
