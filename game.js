@@ -87,7 +87,7 @@ function playerBallCollision(player,ball) {
             depthX = ball.right -player.left
         }
         if (depthX > depthY){
-            return 'py'
+            return 'y'
         }else {
             return 'x'
         }
@@ -158,8 +158,11 @@ function ballUpdate() {
     } else if (collision === 'x') {
         ballState.ballx = ballState.prevX
         ballState.bally = ballState.prevY
-        ballState.speedx *= (-1)
-    }else if (collision === 'py') {
+        let randomx = Math.random() * -1 + -0.5
+        ballState.speedx *= randomx
+        let randomy = Math.random() < 0.5 ? 1 : -1;
+        ballState.speedy *= randomy
+    }else if (collision === 'y') {
         ballState.ballx = ballState.prevX
         ballState.bally = ballState.prevY
         let random = Math.random() < 0.5 ? 1 : -1;
