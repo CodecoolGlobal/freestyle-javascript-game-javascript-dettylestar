@@ -70,4 +70,4 @@ None
 - <i class="far fa-book-open"></i> [CSS Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - <i class="far fa-book-open"></i> [CSS Grid guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
-feature1
+feature2
