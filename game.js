@@ -18,9 +18,8 @@ let gameMode = 'easy'
 let scoreDiv1 = document.querySelector('#first-player-score')
 let scoreDiv2 = document.querySelector('#second-player-score')
 let scoreFirstPlayer = document.createElement('p')
-// scoreFirstPlayer.innerText = leftPlayerScore
 let scoreSecondPlayer = document.createElement('p')
-// scoreSecondPlayer.innerText = rightPlayerScore
+
 scoreDiv1.appendChild(scoreFirstPlayer)
 scoreFirstPlayer.style.fontsize = '20px'
 scoreFirstPlayer.style.fontcolor = 'yellow'
@@ -68,9 +67,9 @@ function initGame() {
         } )
     }
 
-    // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
+
 let wall = document.querySelector('.table').getBoundingClientRect();
 console.log(wall.top)
 
@@ -189,8 +188,6 @@ function ballInit () {
     ball.style.width = '30px';
     ball.style.height = '30px';
     ball.appendChild(shield)
-    //ball.style.borderRadius = '50%';
-    //ball.style.backgroundColor = 'purple';
     ball.style.display = 'block';
     ball.style.position = 'absolute';
     ball.style.left = '400px';

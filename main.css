@@ -91,8 +91,9 @@ body {
     left:0px;
     max-height: available;
     width:50px;
-    border-style: solid;
-    border-color: white;
+    border-style: groove;
+    border-color: goldenrod;
+    border-width: 4px;
 }
 
 
@@ -104,8 +105,9 @@ body {
     right:0px;
     max-height: available;
     width:50px;
-    border-style: solid;
-    border-color: white;
+    border-style: groove;
+    border-color: goldenrod;
+    border-width: 4px;
     order: 6;
 }
 
