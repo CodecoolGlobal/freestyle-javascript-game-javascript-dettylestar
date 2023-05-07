@@ -33,6 +33,14 @@ Mosty we used **Javascript** for the game logic and we also use html and css.
 
 ## Difficulties
 ---
-Hardest part was the collision detection that was my part, finally I came up an idea which is working almost properly.
+Hardest part was the collision detection that was David part, finally David came up an idea which is working almost properly.
 Hardest part in the collision detection was that when the ball reached the wall it stucked into it and didn't bounced back the final solutin was
 a dataset in the ball div.
+
+## About the Team
+---
+Detty was responsible for the Design and paddle moving and also created a super intro video.
+
+Mark was responsible for the ball moving and also styling it.
+
+David was responsible for the collision detection some css styling and for the name bar and the game logic according to it.
